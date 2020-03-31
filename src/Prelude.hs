@@ -9,6 +9,14 @@ module Prelude () where
 -- Implementation of the Haskell Predule... i.e. stdlib
 -- https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#g:1
 
+-- | Identity function.
+id :: a -> a
+id x = x
+
+-- | Function composition.
+(.) :: (a -> b) -> (b -> c) -> a -> c
+(.) f g x = g (f x)
+
 -- | Eq Typeclass
 -- This is our notion of equality for two objects of the same type.
 class Eq a where
@@ -71,3 +79,5 @@ maybe :: b -> (a -> b) -> Maybe a -> b
 maybe _ f (Just x) = f x
 maybe d _ Nothing  = d
 
+map :: (a -> b) -> a -> b
+map f x = f x
