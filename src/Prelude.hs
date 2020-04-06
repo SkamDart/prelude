@@ -12,17 +12,27 @@ module Prelude (
   not,
   (&&),
   (||),
+  (/=),
+  (==),
   otherwise,
   maybe,
-  map
+  map,
+  Void(..),
+  unit,
 ) where
 
 -- Implementation of the Haskell Predule... i.e. stdlib
 -- https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#g:1
 
+-- | "I ain't go no type"
+data Void = Void
+
 -- | Identity function.
 id :: a -> a
 id x = x
+
+unit :: a -> ()
+unit _ = ()
 
 -- | Function composition.
 (.) :: (a -> b) -> (b -> c) -> a -> c
