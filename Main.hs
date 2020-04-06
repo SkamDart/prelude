@@ -1,8 +1,8 @@
+-- https://wiki.haskell.org/No_import_of_Prelude
+{-# LANGUAGE NoImplicitPrelude #-}
+
 module Main where
 
-import qualified MyLib (someFunc)
+import Test.QuickCheck
 
-main :: IO ()
-main = do
-  putStrLn "Hello, Haskell!"
-  MyLib.someFunc
+main = quickCheck (const True)

@@ -4,7 +4,18 @@
 -- Explicit about types of the typeclass instance for clarity.
 {-# LANGUAGE InstanceSigs #-}
 
-module Prelude () where
+module Prelude (
+  id,
+  (.),
+  Eq,
+  Bool,
+  not,
+  (&&),
+  (||),
+  otherwise,
+  maybe,
+  map
+) where
 
 -- Implementation of the Haskell Predule... i.e. stdlib
 -- https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#g:1
