@@ -19,6 +19,8 @@ module Prelude (
   map,
   Void(..),
   unit,
+  Either(..)
+  either
 ) where
 
 -- Implementation of the Haskell Predule... i.e. stdlib
@@ -102,3 +104,16 @@ maybe d _ Nothing  = d
 
 map :: (a -> b) -> a -> b
 map f x = f x
+
+data Either a b = Left a
+                | Right b
+
+instance (Eq a, Eq b) => Eq (Either a b) where
+  (==) (Left x)  (Left y)  = x == y
+  (==) (Right x) (Right y) = x == y
+  (==)  _         _        = False
+  (/=)  x         y        = not (x == y)
+
+either :: (a -> c) -> (b -> c) -> Either a b -> c
+either f _ (Left x) = f x
+either _ g (Right y) = g y
