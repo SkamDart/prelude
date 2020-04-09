@@ -117,3 +117,9 @@ instance (Eq a, Eq b) => Eq (Either a b) where
 either :: (a -> c) -> (b -> c) -> Either a b -> c
 either f _ (Left x) = f x
 either _ g (Right y) = g y
+
+fst :: (a, b) -> a
+fst (x, _) = x
+
+snd :: (a, b) -> b
+snd (_, y) = y
