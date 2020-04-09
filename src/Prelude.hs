@@ -14,13 +14,19 @@ module Prelude (
   (||),
   (/=),
   (==),
+  ($),
   otherwise,
   maybe,
   map,
   Void(..),
   unit,
-  Either(..)
-  either
+  Either(..),
+  either,
+  fst,
+  snd,
+  swap,
+  curry,
+  uncurry,
 ) where
 
 -- Implementation of the Haskell Predule... i.e. stdlib
@@ -76,6 +82,9 @@ not False = True
 (||) False False = False
 (||) _     _     = True
 
+($) :: (a -> b) -> a -> b
+($) f x = f x
+
 -- | Constant value of `True`.
 -- Note, this is for the readability of guards.
 otherwise :: Bool
@@ -123,3 +132,13 @@ fst (x, _) = x
 
 snd :: (a, b) -> b
 snd (_, y) = y
+
+swap :: (a, b) -> (b, a)
+swap (a, b) = (b, a)
+
+curry :: ((a, b) -> c) -> a -> b -> c
+curry f x y = f (x, y)
+
+uncurry :: (a -> b -> c) -> (a, b) -> c
+uncurry f t = f $ fst t $ snd t
+-- uncurry f t = f (fst t) (snd t)
