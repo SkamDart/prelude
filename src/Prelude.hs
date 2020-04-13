@@ -1,7 +1,7 @@
 -- https://wiki.haskell.org/No_import_of_Prelude
 {-# LANGUAGE NoImplicitPrelude #-}
 
--- Explicit about types of the typeclass instance for clarity.
+-- Be explicit about types of the typeclass instance for clarity.
 {-# LANGUAGE InstanceSigs #-}
 
 module Prelude (
@@ -46,6 +46,16 @@ unit _ = ()
 (.) :: (a -> b) -> (b -> c) -> a -> c
 (.) f g x = g (f x)
 
+class Functor f where
+  fmap :: (a -> b) -> f a  -> f b
+
+class Functor f => Applicative f where
+  pure :: a -> f a
+
+class Applicative m => Monad m where
+  return :: a -> m a
+  (>>=) :: m a -> (a -> m b) -> m b
+
 -- | Eq Typeclass
 -- This is our notion of equality for two objects of the same type.
 class Eq a where
@@ -55,6 +65,9 @@ class Eq a where
 -- | Show Typeclass
 -- class Show a where
 --   show :: IO ()
+
+-- |
+data Ordering = LT | EQ | GT
 
 -- | Boolean expressed as a Sum Type.
 data Bool = False
@@ -141,4 +154,3 @@ curry f x y = f (x, y)
 
 uncurry :: (a -> b -> c) -> (a, b) -> c
 uncurry f t = f $ fst t $ snd t
--- uncurry f t = f (fst t) (snd t)
