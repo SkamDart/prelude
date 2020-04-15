@@ -1,6 +1,6 @@
 with import <nixpkgs> {};
 let
-  haskellDeps = ps: with ps; [ base QuickCheck ];
+  haskellDeps = ps: with ps; [ base stylish-haskell QuickCheck ];
 
   ghc = haskellPackages.ghcWithPackages haskellDeps;
 
