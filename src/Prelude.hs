@@ -15,6 +15,7 @@ module Prelude (
   (/=),
   (==),
   ($),
+  (>=>),
   otherwise,
   maybe,
   map,
@@ -27,6 +28,9 @@ module Prelude (
   swap,
   curry,
   uncurry,
+  Functor(..),
+  Applicative(..),
+  Monad(..),
 ) where
 
 -- Implementation of the Haskell Predule... i.e. stdlib
@@ -97,6 +101,10 @@ not False = True
 
 ($) :: (a -> b) -> a -> b
 ($) f x = f x
+
+-- | Kleisli composition
+(>=>) :: Monad m => (a -> m b) -> (b -> m c) -> a -> m c
+(>=>) f g x = f x >>= g
 
 -- | Constant value of `True`.
 -- Note, this is for the readability of guards.
